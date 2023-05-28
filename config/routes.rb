@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   root "events#index"
 
   resources :users do
-    resources :events, only: [:index]
+    resources :events
   end
 
   resources :events do
-    resources :users, only: [:index]
+    resources :users
   end
 end
