@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    post "events/:id/join" => "events#join"
     resources :users
+    resources :event_attendings, only: :event_attendee
   end
 end

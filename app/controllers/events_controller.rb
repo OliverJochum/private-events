@@ -21,6 +21,19 @@ class EventsController < ApplicationController
 
   end
 
+  def join
+    @event = Event.find(params[:id])
+    user = User.find(params[:user_id])
+    @attendee = @event.attendees.build(user.attributes)
+
+    if @attendee.save
+      redirect_to "show"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+
   private
   def event_params
     params.require(:event).permit(:title,:location,:date)
